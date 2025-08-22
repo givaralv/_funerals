@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+
+{% block title %}Crear Obituario{% endblock %}
+
+{% block formularios %}
+
+<style>
+    /* Alargar cajas de texto y alinearlas al final */
+    form input[type="text"], form input[type="email"], form textarea {
+        width: 100%;
+        min-width: 100px;
+        max-width: 100%;
+        margin-bottom: 0px;
+    }
+    form .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h3 class="text-center mb-4">Crear Obituario</h3>
+            <form method="POST" enctype="multipart/form-data" class="p-3 border rounded bg-white shadow-sm">
+                {% csrf_token %}
+                <h4>Información básica</h4>
+                {{ obituario_form.as_p|safe }}
+
+                <!-- Acá se Muestra el formulario de información adicional, mostrarlo
+                <hr><h4>Información adicional</h4>
+                {{ detalle_form.as_p|safe }} -->
+
+                <script>
+                    // Asegurarse de que el campo de fecha sea del tipo date
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var dateInput = document.querySelector('input[type="date"]');
+                        if (!dateInput) {
+                            dateInput = document.querySelector('input[name*="fecha"], input[name*="date"]');
+                            if (dateInput) {
+                                dateInput.type = 'date';
+                            }
+                        }
+                    });
+                </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var textarea = document.querySelector('textarea');
+                        if (textarea) {
+                            textarea.rows = 3;
+                            textarea.style.height = '180px';
+                        }
+                    });
+                </script>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-dark mt-3">Guardar Obituario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

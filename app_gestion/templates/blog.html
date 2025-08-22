@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% block title %}Nosotros{% endblock %}
+
+{% block content %}
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            font-weight: bold;
+        }
+        .btn-toggle {
+            cursor: pointer;
+        }
+    </style>
+
+<body>
+    <div class="container py-4">
+        <h2 class="mb-4 text-center text-primary">Publicaciones del Blog</h2>
+        <p class="text-center text-muted">Explora nuestras últimas publicaciones y mantente al día con las novedades.</p>
+
+        {% for blog in blogs %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title text-dark">{{ blog.titulo }}</h5>
+                <p class="card-text text-muted">
+                    <small>Publicado el {{ blog.fecha_publicacion|date:"d M Y" }}</small>
+                </p>
+
+                <!-- Resumen -->
+                <p class="card-text" id="resumen-{{ blog.id }}">
+                    {{ blog.contenido|truncatewords:40 }}...
+                </p>
+
+                <!-- Contenido completo oculto -->
+                <p class="card-text d-none" id="completo-{{ blog.id }}">
+                    {{ blog.contenido }}
+                </p>
+
+                <!-- Botón Leer más / Leer menos -->
+                <button class="btn btn-outline-primary btn-sm btn-toggle" onclick="toggleContenido('{{ blog.id }}')"
+                        id="btn-{{ blog.id }}">
+                    Leer más
+                </button>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">No hay publicaciones disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <script>
+        function toggleContenido(id) {
+            const resumen = document.getElementById('resumen-' + id);
+            const completo = document.getElementById('completo-' + id);
+            const boton = document.getElementById('btn-' + id);
+
+            if (resumen.classList.contains('d-none')) {
+                resumen.classList.remove('d-none');
+                completo.classList.add('d-none');
+                boton.textContent = 'Leer más';
+            } else {
+                resumen.classList.add('d-none');
+                completo.classList.remove('d-none');
+                boton.textContent = 'Leer menos';
+            }
+        }
+    </script>
+
+</body>
+
+{% endblock %}

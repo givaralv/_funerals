@@ -1,0 +1,125 @@
+
+{% extends "base.html" %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+
+    <style>
+        form p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        form label {
+            flex: 1;
+            margin-right: 10px;
+            text-align: right;
+        }
+
+        form input {
+            flex: 2;
+            text-align: right; /* Alinea el texto dentro del input a la derecha */
+        }
+    </style>
+
+<div class="container mt-4">
+    <div class="row mb-3 mt-3">
+        <!--Contenido de la seccion Izquierda del formulario-->
+        <div class="col col-md-5 mb-5">
+            <div class="card border-dark">
+                <div class="card-body d-flex flex-column">
+                    <h4> &#8224; {{ obituario.nombre }}</h4>
+                    <p><strong>Fecha Fallecimiento:</strong> {{ obituario.fecha_fallecimiento }}</p>
+                    <p><strong>Mensaje:</strong> {{ obituario.mensaje }}</p>
+                    {% if obituario.imagen %}
+                        <img src="{{ obituario.imagen.url }}" class="card-img-top" style="height: 400px; object-fit: cover; width: 100%;">
+                    {% endif %}
+
+                    <hr>
+                    <h4>Información Adicional</h4>
+                    {% if detalle %}
+                        <p><strong>Lugar de exequias:</strong> {{ detalle.lugar_exequias }}</p>
+                        <p><strong>Fecha de exequias:</strong> {{ detalle.fecha_exequias }}</p>
+                        <p><strong>Lugar Velatorio:</strong> {{ detalle.lugar_velatorio }}</p>
+                        <p><strong>Destino Final:</strong> {{ detalle.destino_final }}</p>
+                        <p><strong>Invitaciones:</strong> {{ detalle.invitaciones }}</p>
+                    {% else %}
+                        <p>No hay información adicional disponible.</p>
+                    {% endif %}
+
+                    <a href="{% url 'listar_obituarios' %}" class="btn btn-outline-dark mt-3">Volver</a>
+                </div>
+            </div>
+        </div>
+
+        <!--Contenido de la seccion Derecha del formulario-->
+        <div class="col col-md-7 mb-7">
+            <div class="card border-dark">
+                <div class="card-body d-flex flex-column text-center">
+                    <h4>Mensajes</h4>
+                    <p>Si desea enviar un mensaje de condolencias, por favor complete el siguiente formulario.</p>
+                    <hr>
+                    <h4>Enviar Condolencias</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ condolencia_form.as_p }}
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-outline-dark mt-3">Enviar Condolencias</button>
+                        </div>
+                    </form>
+
+                    <hr>
+                    <h4>Mensajes de Condolencias</h4>
+                    {% for c in condolencias %}
+                        <div class="border p-2 mb-2">
+                            <strong>{{ c.nombre_remitente }}</strong> <small class="text-muted">({{ c.fecha_envio|date:"d/m/Y H:i"}})</small>
+                            <p>{{ c.mensaje }}</p>
+                        </div>
+                    {% empty %}
+                        <p>No hay mensajes de condolencia todavía.</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botón flotante para subir -->
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+        id="btnSubir" 
+        title="Subir"
+        style="
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #8f3030ff;
+            color: white;
+            cursor: pointer;
+            padding: 15px 18px;
+            border-radius: 50%;
+            font-size: 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            padding: 0;
+            display: none;
+        ">
+    &#94; <!-- Flecha hacia arriba -->
+</button>
+
+<script>
+    // Mostrar el botón solo cuando se hace scroll hacia abajo
+    window.onscroll = function() {
+        document.getElementById("btnSubir").style.display = 
+            (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+</script>
+
+{% endblock %}

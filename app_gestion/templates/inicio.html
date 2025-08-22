@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Funerales Santa María{% endblock %}
+
+<body>
+    
+    {% block encabezado %}
+    <!-- Encabezado de la Página -->
+    <header class="bg-light text-center py-3">
+        <h3 class="text-center mt-4">Organización Funerales Santa María</h3>
+        <p class="text-center">Comprometidos con brindar un servicio de calidad y respeto en los momentos difíciles.</p>
+    </header>
+    <!-- Fin Encabezado de la Página -->
+    {% endblock %}
+
+    {% block carrusel%}
+        <!--Contenido Carrusel-->
+        <div id="slideshow" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="#">
+                    <img src="/static/img/slide1.jpg" class="d-block w-100" alt="Slide 1">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                    <img src="/static/img/slide2.jpg" class="d-block w-100" alt="Slide 2">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                        <img src="/static/img/slide3.jpg" class="d-block w-100" alt="Slide 3">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                        <img src="/static/img/slide4.jpg" class="d-block w-100" alt="Slide 4">
+                    </a>
+                </div>
+            </div>
+
+            <!--Controles del Carrusel-->
+            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+            
+            <!--Indicadores del Carrusel-->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#slideshow" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#slideshow" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#slideshow" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#slideshow" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+        </div>
+        <!--Fin Contenido Carrusel-->
+    {% endblock %}
+
+    {% block galeria %}
+        <!--Contenido de Galería de Imágenes-->
+        <div class="mt-5">
+            <h5 class="text-center mb-4">Nuestros Servicios</h5>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card">
+                        <a href="#" class="stretched-link"></a>
+                        <img src="/static/img/gallery1.jpg" class="card-img-top" alt="Imagen 1">
+                        <div class="card-body">
+                            <p class="card-text text-black-50">SERVICIOS FUNERARIOS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <a href="#" class="stretched-link"></a>
+                        <img src="/static/img/gallery2.jpg" class="card-img-top" alt="Imagen 2">
+                        <div class="card-body">
+                            <p class="card-text text-black-50">PREVISIÓN EXEQUIAL</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <a href="#" class="stretched-link"></a>
+                        <img src="/static/img/gallery3.jpg" class="card-img-top" alt="Imagen 3">
+                        <div class="card-body">
+                            <p class="card-text text-black-50">SERVICIOS COMPLEMENTARIOS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <a href="{% url 'listar_obituarios' %}" class="stretched-link"></a>
+                        <img src="/static/img/gallery9.jpg" class="card-img-top" alt="Imagen 3">
+                        <div class="card-body">
+                            <p class="card-text text-black-50">OBITUARIOS</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        <!--Fin Contenido de Galería de Imágenes-->
+    {% endblock %}
+
+</body>

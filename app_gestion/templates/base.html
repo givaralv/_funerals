@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>{% block title %} {% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome (para los iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts (para la tipografía) -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@100..700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: "Oswald", sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            font-optical-sizing: auto;
+            font-weight: <weight>;
+            font-style: normal;
+        }   
+    </style>
+</head>
+
+<body>
+    <!--Contenido Barra de Navegación-->
+    <header class="bg-light p-1 mb-1">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!--Logo de la Empresa en Barra de navegación-->
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img src="/static/img/logo.ico" alt="Logo" width="40" height="40" class="d-inline-block align-text-top me-2">OFSM
+                </a>
+
+                <!--Boton para el menu Movil en Barra de navegación-->
+                <button type="button"
+                class="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu"
+                aria-controls="menu"
+                aria-expanded="false"
+                aria-label="Mostrar / Ocultar Menu"> 
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!--Menu de Navegación-->
+                <div class="navbar-collapse" id="menu">
+
+                    <!--Creamos lista desordenada para Menu-->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <!--Elemento del Menu Inicio-->
+                        <li class="nav-item"><a href="{% url 'inicio' %}" class="nav-link">Inicio</a></li>
+
+                        <!--Dropdown del Menu Nosotros-->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            id="drop_nosotros">Nosotros</a>
+
+                            <!--Creamos SubMenu para el elemeto Servicios-->
+                            <ul class="dropdown-menu" aria-labelledby="drop_nosotros">
+                                <li><a href="{% url 'nosotros' %}" class="dropdown-item">¿Quienes somos?</a></li>
+                                <li><a href="{% url 'nosotros' %}" class="dropdown-item">Misión y Visión</a></li>
+                                <li><a href="{% url 'nosotros' %}" class="dropdown-item">Valores</a></li>
+                                <li><a href="{% url 'nosotros' %}" class="dropdown-item">Historia</a></li>
+                                <li><a href="{% url 'nosotros' %}" class="dropdown-item">Ubicación e Instalaciones</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Dropdown del Menu Servicios-->
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            id="drop_servicios">Servicios</a>
+
+                            <!--Creamos SubMenu para el elemeto Servicios-->
+                            <ul class="dropdown-menu" aria-labelledby="drop_servicios">
+                                <li><a href="{% url 'listar_obituarios' %}" class="dropdown-item">Obituarios</a></li>
+                                <li><a href="#" class="dropdown-item">Previsión Exequial</a></li>
+                                <li><a href="#" class="dropdown-item">Servicios Funerarios</a></li>
+                                <li><a href="#" class="dropdown-item">Servicios Complementarios</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Elemento del Menu Blog-->
+                        <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link">Blog</a></li>
+                        
+                        <!--Elemento del Menu Contacto-->
+                        <li class="nav-item"><a href="{% url 'contacto' %}" class="nav-link">Contacto</a></li>
+
+                    </ul>
+
+                    <!--Barra de Busqueda en Menu de Navegación-->
+                    <form class="d-flex">
+                        <input type="search" class="form-control me-2" placeholder="Buscar" aria-label="Buscar">
+                        <button type="button" class="btn btn-outline-light">Buscar</button>
+                    </form>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Fin Contenido Barra de Navegación-->
+
+    <main class="container">
+        <div class="row mt-3">
+            <div class="col">
+
+                <!-- Aquí va block Encabezado de Pagina-->
+                {% block encabezado %} {% endblock %}
+
+                <!-- Aquí va block carrusel de imágenes -->
+                {% block carrusel %} {% endblock %}
+
+                <!-- Aquí va block galeria de imágenes -->
+                {% block galeria %} {% endblock %}
+
+                <!-- Aquí va block contenido principal -->
+                {% block content %} {% endblock %}
+
+                <!-- Aquí va block Formularios -->
+                {% block formularios %} {% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Contenido de Pie de Página -->
+    <footer class="bg bg-secondary text-white text-center p-3 mt-5">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+            <!-- Facebook -->
+            <a data-mdb-ripple-init class="btn btn-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+            <!-- Twitter -->
+            <a data-mdb-ripple-init class="btn btn-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+            <!-- Google -->
+            <a data-mdb-ripple-init class="btn btn-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+            <!-- Instagram -->
+            <a data-mdb-ripple-init class="btn btn-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+            <!-- Linkedin -->
+            <a data-mdb-ripple-init class="btn btn-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+            </section>
+            <!-- Fin Section: Social media -->
+            <hr>
+
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold mb-4">Org. Funerales Santa María</h6>
+                            <p>
+                                Somos una empresa con más de 40 años de experiencia en el sector funerario, brindando
+                                servicios de alta calidad y apoyo integral a las familias en momentos difíciles.
+                            </p>
+                        </div>
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">Servicios</h6>
+                            <p><a href="#!" class="text-reset">Obituarios</a></p>
+                            <p><a href="#!" class="text-reset">Previsión Exequial</a></p>
+                            <p><a href="#!" class="text-reset">Servicios Funerarios</a></p>
+                            <p><a href="#!" class="text-reset">Servicios Complementarios</a></p>
+                        </div>
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                            <p><i class="fas fa-home me-3"></i>OF.PPAL. Calle 18 No. 16 - 45
+                                Duitama, Boyacá, Colombia</p>
+                                <p><i class="fas fa-envelope me-3"></i>
+                                    <a href="mailto:funeralessantamaria@hotmail.com" style="color: #ffffff;">funeralessantamaria@hotmail.com</a>
+                                </p>
+                            <p><i class="fas fa-mobile-alt me-3"></i> + 057 311 228 33 09 </p>
+                            <p><i class="fas fa-phone me-3"></i>608 7605420 - 608 7623705</p>
+                        </div>
+                    </div>
+                <!-- Fin Grid row -->
+                </div>
+            </section>
+            <!-- Fin Section: Links  -->
+        </div>
+        
+        <hr>
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.363);">
+            © 2025 Derechos Reservados:
+            <a class="text-reset fw-bold" href="#">OFSM</a
+        </div>
+    </footer>
+    <!-- Fin Contenido de Pie de Página -->
+
+    <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

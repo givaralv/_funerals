@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Nosotros{% endblock %}
+
+
+{% block content %}
+    
+    <!--Contenido de la Página Nosotros-->
+    <div class="container my-5">
+        <h1 class="text-center mb-5">Nosotros</h1>
+        
+        <section class="mb-5">
+            <h2>¿Quiénes somos?</h2>
+            <p>Somos una organización comprometida con brindar un servicio humano, digno y respetuoso en momentos difíciles.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Misión</h2>
+            <p>Brindar servicios funerarios integrales que acompañen con respeto y calidez a las familias en su momento de duelo.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Visión</h2>
+            <p>Ser reconocidos como la empresa líder en servicios funerarios por nuestra calidad humana y profesionalismo.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Valores</h2>
+            <ul>
+                <li>Respeto</li>
+                <li>Empatía</li>
+                <li>Transparencia</li>
+                <li>Compromiso</li>
+                <li>Solidaridad</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2>Historia</h2>
+            <p>Nuestra empresa nació en el año 2005 con la vocación de servir a la comunidad en los momentos más delicados. Desde entonces, hemos acompañado a miles de familias.</p>
+        </section>
+
+        <section>
+            <h2>Ubicación</h2>
+            <p>Nos encontramos en: <strong>Calle 18 # 16-49 Duitama, Boyacá, Colombia</strong></p>
+            <!-- Puedes incluir Google Maps a continuación -->
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item w-100" height="300" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.870626205098!2d-73.0363776851475!3d5.827989295017698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a7b9c8c8c8c8c%3A0x8c8c8c8c8c8c8c8c!2sCalle%2018%20%2316-49%20Duitama%2C%20Boyac%C3%A1%2C%20Colombia!5e0!3m2!1ses-419!2sco!4v1625250730000!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border:0;"
+                    allowfullscreen="" loading="lazy"></iframe> 
+            </div>
+        </section>  
+    </div>
+
+        <!-- Botón flotante para subir -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+            id="btnSubir" 
+            title="Subir"
+            style="
+                position: fixed;
+                bottom: 40px;
+                right: 40px;
+                z-index: 99;
+                border: none;
+                outline: none;
+                background-color: #8f3030ff;
+                color: white;
+                cursor: pointer;
+                padding: 15px 18px;
+                border-radius: 50%;
+                font-size: 22px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                border-radius: 50%;
+                width: 56px;
+                height: 56px;
+                padding: 0;
+                display: none;
+            ">
+        &#94; <!-- Flecha hacia arriba -->
+    </button>
+
+    <script>
+        // Mostrar el botón solo cuando se hace scroll hacia abajo
+        window.onscroll = function() {
+            document.getElementById("btnSubir").style.display = 
+                (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
+        };
+    </script>
+
+    <!--Fin Contenido de la Página Nosotros-->
+{% endblock %}

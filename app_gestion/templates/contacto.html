@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block formularios %}
+
+<style>
+    /* Alargar cajas de texto y alinearlas al final */
+    form input[type="text"], form input[type="email"], form textarea {
+        width: 100%;
+        min-width: 100px;
+        max-width: 100%;
+        margin-bottom: 0px;
+    }
+    form .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h3 class="text-center mb-4">Contáctenos</h3>
+            <p class="text-center">Si tienes alguna pregunta o necesitas más información, por favor completa el siguiente formulario:</p>
+            <form method="POST" enctype="multipart/form-data" class="p-3 border rounded bg-white shadow-sm">
+                {% csrf_token %}
+                {{ form.as_p|safe }}
+                <script>
+                    // Asegurarse de que el campo de fecha sea del tipo date
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var dateInput = document.querySelector('input[type="date"]');
+                        if (!dateInput) {
+                            dateInput = document.querySelector('input[name*="fecha"], input[name*="date"]');
+                            if (dateInput) {
+                                dateInput.type = 'date';
+                            }
+                        }
+                    });
+                </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var textarea = document.querySelector('textarea');
+                        if (textarea) {
+                            textarea.rows = 3;
+                            textarea.style.height = '180px';
+                        }
+                    });
+                </script>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-dark mt-3">Enviar Información</button>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
